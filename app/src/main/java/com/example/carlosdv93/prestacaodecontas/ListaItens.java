@@ -1,5 +1,6 @@
 package com.example.carlosdv93.prestacaodecontas;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.CursorAdapter;
@@ -57,7 +58,7 @@ public class ListaItens extends AppCompatActivity {
     }
 
 
-    public void editar() {
+ /*   public void editar() {
 //        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            @Override
 //            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,6 +71,12 @@ public class ListaItens extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+    }
+*/
+    public void editar(long id){
+        Intent intent = new Intent(this, EditarActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
     }
 
     @Override
@@ -89,7 +96,7 @@ public class ListaItens extends AppCompatActivity {
                 break;
             case R.id.editarMenu:
                 Toast.makeText(ListaItens.this, "ID: " +info.id+ "Position:" + info.position, Toast.LENGTH_SHORT).show();
-                //editar();
+                editar(info.id);
                 break;
             default:
                 return super.onContextItemSelected(item);
