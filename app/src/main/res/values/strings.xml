@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Prestação de Contas</string>
+    <string name="action_settings">Settings</string>
+    <string name="Item">Item: </string>
+    <string name="Valor">Valor: </string>
+    <string name="ItemHint">Item</string>
+    <string name="ValorHint">Valor</string>
+    <string name="Salvar">Salvar</string>
+    <string name="Verificar">Verifica</string>
+    <string name="editarMenu">Editar</string>
+</resources>
