@@ -66,13 +66,15 @@ public class BancoDeDados {
         contentValues.put(CriaBanco.VALOR, valor);
 
         db.update(CriaBanco.TABELA, contentValues, "_id = ?", new String[]{aux});
+        db.close();
     }
 
-    public Cursor buscarID(int id){
+    //public Cursor buscarID(int id){
+    public Cursor buscarID(long id){
         db = banco.getReadableDatabase();
         String[] colunas = new String[]{"_id", "item", "valor"};
-        Cursor cursor = db.query("conta", colunas, "where id = " + id, null, null, null, "_id");
 
+        Cursor cursor = db.query("conta", colunas, "_id = " + id, null, null, null, "_id");
         if (cursor != null) {
             cursor.moveToFirst();
         }

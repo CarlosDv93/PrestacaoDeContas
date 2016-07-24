@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/PrimeiroLinearEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtItemEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Item"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/etxtItemEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/ItemHint" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/SegundoLinearEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PrimeiroLinearEditar">
+
+
+        <TextView
+            android:id="@+id/txtValorEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Valor"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/etxtValorEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ValorHint" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TerceiroLinearEditar"
+        android:layout_below="@+id/SegundoLinearEditar">
+
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Salvar"
+            android:id="@+id/btnSalvarEditar"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnVerificarEditar"
+            android:text="@string/Cancelar"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
