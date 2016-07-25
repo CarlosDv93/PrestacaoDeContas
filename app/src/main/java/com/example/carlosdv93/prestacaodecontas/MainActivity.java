@@ -1,9 +1,14 @@
 package com.example.carlosdv93.prestacaodecontas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.TerceiroLinear)
     LinearLayout TerceiroLinear;
 
-    String item;
+    String item, valoraux;
     float valor;
+
     private BancoDeDados db = new BancoDeDados(this);
 
     @Override
@@ -53,14 +59,60 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    public void criaAlerta(char tipo){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        if(tipo == 'i') {
+            alertDialog.setTitle("Erro no Item");
+            alertDialog.setMessage("Você deixou o campo ITEM em branco");
+            alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    etxtItem.requestFocus();
+                }
+            });
+        } else if (tipo == 'a') {
+            alertDialog.setTitle("Erro ao Preencher");
+            alertDialog.setMessage("Você deixou os 2 CAMPOS em branco");
+            alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    etxtItem.requestFocus();
+                }
+            });
+        } else if (tipo == 'v'){
+            alertDialog.setTitle("Erro no Valor");
+            alertDialog.setMessage("Você deixou o campo VALOR em branco");
+            alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    etxtValor.requestFocus();
+                }
+            });
+        }
+
+        alertDialog.create();
+        alertDialog.show();
+
+    }
+
     @OnClick(R.id.btnSalvar)
     public void onClickSalva(View view) {
-
         item = etxtItem.getText().toString();
-        valor = Float.valueOf(etxtValor.getText().toString());
+        valoraux = etxtValor.getText().toString();
+        valoraux = valoraux.replace(",", ".");
 
-        db.inserir(item, valor);
-        Toast.makeText(MainActivity.this, "Item: " + item + "\nValor: " + String.format(Locale.getDefault(), "%.2f", valor), Toast.LENGTH_SHORT).show();
+        if (item.equals("")&& valoraux.equals("")) {
+            criaAlerta('a');
+        } else if (item.equals("") && !valoraux.equals("")){
+            criaAlerta('i');
+        } else if (!item.equals("")&& valoraux.equals("")) {
+            criaAlerta('v');
+        } else {
+            valor = Float.valueOf(valoraux);
+            db.inserir(item, valor);
+            Toast.makeText(MainActivity.this, "Item: " + item + "\nValor: " + String.format(Locale.getDefault(), "%.2f", valor), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.btnVerificar)
@@ -70,5 +122,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }
 

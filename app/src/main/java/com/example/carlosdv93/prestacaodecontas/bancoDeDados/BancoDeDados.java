@@ -21,7 +21,6 @@ public class BancoDeDados {
 
     public BancoDeDados(Context context) {
         banco = new CriaBanco(context);
-
     }
 
     public String inserir(String item, float valor){
