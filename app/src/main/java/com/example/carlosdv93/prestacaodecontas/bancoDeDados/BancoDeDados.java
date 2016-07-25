@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,15 +59,21 @@ public class BancoDeDados {
     }
 
 
-    public void editar(int id, String item, float valor){
+    public boolean editar(long id, String item, float valor){
         db = banco.getWritableDatabase();
-        String aux = Integer.toString(id);
+        String aux = Long.toString(id);
         ContentValues contentValues = new ContentValues();
         contentValues.put(CriaBanco.ITEM, item);
         contentValues.put(CriaBanco.VALOR, valor);
 
-        db.update(CriaBanco.TABELA, contentValues, "_id = ?", new String[]{aux});
+        int update = db.update(CriaBanco.TABELA, contentValues, "_id = ?", new String[]{aux});
         db.close();
+
+        if (update == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //public Cursor buscarID(int id){

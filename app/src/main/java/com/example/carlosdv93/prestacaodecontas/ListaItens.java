@@ -3,7 +3,7 @@ package com.example.carlosdv93.prestacaodecontas;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.CursorAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -12,17 +12,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carlosdv93.prestacaodecontas.bancoDeDados.BancoDeDados;
 
-import org.w3c.dom.Text;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemLongClick;
-import butterknife.OnLongClick;
 
 public class ListaItens extends AppCompatActivity {
 
@@ -36,6 +31,12 @@ public class ListaItens extends AppCompatActivity {
         setContentView(R.layout.activity_lista_itens);
         ButterKnife.bind(this);
         registerForContextMenu(listView);
+        preencher();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         preencher();
     }
 
@@ -63,19 +64,20 @@ public class ListaItens extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        menu.setHeaderTitle("Menu de Contexto");
-        inflater.inflate(R.menu.menu_main, menu);
+        menu.setHeaderTitle(R.string.Opcoes);
+        inflater.inflate(R.menu.menu_opcoes, menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.deletar:
+
                 Toast.makeText(ListaItens.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.editarMenu:
-                Toast.makeText(ListaItens.this, "ID: " +info.id+ "Position:" + info.position, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ListaItens.this, "ID: " +info.id+ "Position:" + info.position, Toast.LENGTH_SHORT).show();
                 editar(info.id);
                 break;
             default:

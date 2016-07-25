@@ -9,4 +9,7 @@
     <string name="Verificar">Verifica</string>
     <string name="editarMenu">Editar</string>
     <string name="Cancelar">Cancelar</string>
+    <string name="Deletar">Deletar</string>
+    <string name="Opcoes">Opções</string>
+
 </resources>

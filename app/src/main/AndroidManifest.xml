@@ -15,8 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListaItens" />
-        <activity android:name=".EditarActivity"></activity>
+        <activity android:name=".ListaItens" android:parentActivityName=".MainActivity" />
+        <activity android:name=".EditarActivity" android:parentActivityName=".ListaItens"></activity>
     </application>
 
 </manifest>
