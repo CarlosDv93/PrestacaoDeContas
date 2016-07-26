@@ -1,16 +1,25 @@
 package com.example.carlosdv93.prestacaodecontas;
 
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by CarlosDv93 on 25/07/2016.
  */
 public class MenuAll extends AppCompatActivity {
+
+    @BindView(R.id.etxtValorGastar)
+    EditText etxtValorGastar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,8 +48,10 @@ public class MenuAll extends AppCompatActivity {
 
         if (tipo == 'c') {
             alertDialog.setTitle(R.string.configuracao);
+            alertDialog.setIcon(R.drawable.ic_action_action_settings);
+            alertDialog.setView(R.layout.config_view);
             alertDialog.setMessage(R.string.configuracao);
-            alertDialog.setNeutralButton("OK", null);
+            alertDialog.setPositiveButton(R.string.Salvar, null);
         } else if (tipo == 's') {
             alertDialog.setTitle(R.string.sobre);
             alertDialog.setMessage(R.string.sobre_descrito);
@@ -52,4 +63,10 @@ public class MenuAll extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

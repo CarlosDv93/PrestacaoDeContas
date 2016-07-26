@@ -18,5 +18,7 @@
     <string name="sobre_descrito">App desolvido para controle de gastos  de maneira simplificada.
         \nInsere os dados e permite editar o valor inserido ou deletar o mesmo.
         \nDesenvolvido por Carlos D. A. Arcos. © 2016 </string>
+    <string name="valorGastar">Valor Máximo a Gastar</string>
+    <string name="valorGastarHint">Valor MÃXIMO para Gastar</string>
 
 </resources>
