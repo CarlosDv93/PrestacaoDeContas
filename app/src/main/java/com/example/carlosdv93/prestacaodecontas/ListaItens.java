@@ -19,7 +19,7 @@ import com.example.carlosdv93.prestacaodecontas.bancoDeDados.BancoDeDados;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListaItens extends AppCompatActivity {
+public class ListaItens extends MenuAll {
 
     @BindView(R.id.listView)
     ListView listView;

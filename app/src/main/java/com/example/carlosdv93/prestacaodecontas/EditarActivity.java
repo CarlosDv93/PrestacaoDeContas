@@ -63,6 +63,11 @@ public class EditarActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.btnCancelarEditar)
+    public void cancelarEditar(){
+        finish();
+    }
+
 }
 
 
