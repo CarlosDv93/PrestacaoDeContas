@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     public final static String NOME_BD = "PrestacaoDeContas";
-    private static final int VERSAO_BD= 1;
+    private static final int VERSAO_BD= 2;
     static final String TABELA = "conta";
     private static final String ID = "_id";
     static final String ITEM = "item";
