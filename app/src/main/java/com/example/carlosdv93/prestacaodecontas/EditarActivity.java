@@ -2,6 +2,8 @@ package com.example.carlosdv93.prestacaodecontas;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,25 +50,62 @@ public class EditarActivity extends AppCompatActivity {
 
     }
 
-
+    @Nullable
     @OnClick(R.id.btnSalvarEditar)
     public void salvarEdicao() {
         BancoDeDados db = new BancoDeDados(this);
-        String str = ((EditText) this.findViewById(R.id.etxtItemEditar)).getText().toString();
-        Float valor = Float.parseFloat(((EditText)this.findViewById(R.id.etxtValorEditar)).getText().toString());
-        Toast.makeText(EditarActivity.this, "Item: " + str + "\nValor: " + valor, Toast.LENGTH_SHORT).show();
-        boolean editar = db.editar(ID, str, valor);
-        if (editar) {
-            finish();
+        String item = ((EditText) this.findViewById(R.id.etxtItemEditar)).getText().toString();
+        String valoraux = ((EditText) this.findViewById(R.id.etxtValorEditar)).getText().toString();
+        valoraux = valoraux.replace(",", ".");
+
+        if (item.equals("") && valoraux.equals("")) {
+            criaAlerta('a');
+        } else if (item.equals("") && !valoraux.equals("")) {
+            criaAlerta('i');
+        } else if (!item.equals("") && valoraux.equals("")) {
+            criaAlerta('v');
         } else {
-            Toast.makeText(EditarActivity.this, "Não foi possível editar!", Toast.LENGTH_SHORT).show();
+
+            boolean editar = db.editar(ID, item, Float.parseFloat(valoraux));
+            if (editar) {
+                finish();
+            } else {
+                Toast.makeText(EditarActivity.this, "Não foi possível editar!", Toast.LENGTH_SHORT).show();
+            }
         }
+
+        Toast.makeText(EditarActivity.this, "Item: " + item + "\nValor: " + valoraux, Toast.LENGTH_SHORT).show();
+
     }
 
+
     @OnClick(R.id.btnCancelarEditar)
-    public void cancelarEditar(){
+    public void cancelarEditar() {
         finish();
     }
+
+    public void criaAlerta(char tipo) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        if (tipo == 'i') {
+            alertDialog.setTitle("Erro no Item");
+            alertDialog.setMessage("Você deixou o campo ITEM em branco");
+            alertDialog.setNeutralButton("OK", null);
+        } else if (tipo == 'a') {
+            alertDialog.setTitle("Erro ao Preencher");
+            alertDialog.setMessage("Você deixou os 2 CAMPOS em branco");
+            alertDialog.setNeutralButton("OK", null);
+        } else if (tipo == 'v') {
+            alertDialog.setTitle("Erro no Valor");
+            alertDialog.setMessage("Você deixou o campo VALOR em branco");
+            alertDialog.setNeutralButton("OK", null);
+        }
+
+        alertDialog.create();
+        alertDialog.show();
+
+    }
+
 
 }
 

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +19,11 @@ public class BancoDeDados {
     private CriaBanco banco;
 
 
-
     public BancoDeDados(Context context) {
         banco = new CriaBanco(context);
     }
 
-    public String inserir(String item, float valor){
+    public String inserir(String item, float valor) {
         ContentValues valores = new ContentValues();
         long resultado;
 
@@ -34,31 +34,31 @@ public class BancoDeDados {
         resultado = db.insert(CriaBanco.TABELA, null, valores);
         db.close();
 
-        if (resultado ==-1)
+        if (resultado == -1)
             return "Erro ao inserir registro";
         else
             return "Registro Inserido com sucesso";
     }
 
-    public Cursor buscar(){
+    public Cursor buscar() {
 
 //        SQLiteDatabase dbBD;
 //        dbBD = banco.getReadableDatabase();
         db = banco.getReadableDatabase();
         String[] colunas = new String[]{"_id", "item", "valor"};
-   //     Cursor cursor = dbBD.query("conta", colunas, null, null, null, null, "_id");
+        //     Cursor cursor = dbBD.query("conta", colunas, null, null, null, null, "_id");
         Cursor cursor = db.query("conta", colunas, null, null, null, null, "_id");
 
         if (cursor != null) {
             cursor.moveToFirst();
         }
-       // dbBD.close();
+        // dbBD.close();
         db.close();
         return cursor;
     }
 
 
-    public boolean editar(long id, String item, float valor){
+    public boolean editar(long id, String item, float valor) {
         db = banco.getWritableDatabase();
         String aux = Long.toString(id);
         ContentValues contentValues = new ContentValues();
@@ -76,7 +76,7 @@ public class BancoDeDados {
     }
 
     //public Cursor buscarID(int id){
-    public Cursor buscarID(long id){
+    public Cursor buscarID(long id) {
         db = banco.getReadableDatabase();
         String[] colunas = new String[]{"_id", "item", "valor"};
 
@@ -86,6 +86,23 @@ public class BancoDeDados {
         }
         db.close();
         return cursor;
+    }
+
+    public float somaTotal() {
+        db = banco.getReadableDatabase();
+        String selectSum = "SELECT SUM(" + CriaBanco.VALOR + ") FROM " + CriaBanco.TABELA + ";";
+        float soma;
+        Cursor cursor;
+
+        cursor = db.rawQuery(selectSum, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        soma = cursor.getFloat(0);
+        db.close();
+        return soma;
     }
 
 }
