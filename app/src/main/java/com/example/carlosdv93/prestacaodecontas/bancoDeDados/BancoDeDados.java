@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.carlosdv93.prestacaodecontas.ListaItens;
+
 import java.util.ArrayList;
 
 /**
@@ -75,7 +77,6 @@ public class BancoDeDados {
         }
     }
 
-    //public Cursor buscarID(int id){
     public Cursor buscarID(long id) {
         db = banco.getReadableDatabase();
         String[] colunas = new String[]{"_id", "item", "valor"};
@@ -86,6 +87,18 @@ public class BancoDeDados {
         }
         db.close();
         return cursor;
+    }
+
+    public boolean deletarID(long id) {
+        db = banco.getWritableDatabase();
+        String[] idDeletar = new String[]{String.valueOf(id)};
+
+        int delete = db.delete(CriaBanco.TABELA, "_id = ?" , idDeletar);
+        db.close();
+        if (delete == 0) {
+            return false;
+        } else
+            return true;
     }
 
     public float somaTotal() {

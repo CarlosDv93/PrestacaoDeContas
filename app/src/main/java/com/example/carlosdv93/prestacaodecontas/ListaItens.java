@@ -67,6 +67,12 @@ public class ListaItens extends MenuAll {
         startActivity(intent);
     }
 
+    public void deletar(long id){
+        Intent intent = new Intent(this, DeletarActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -80,11 +86,9 @@ public class ListaItens extends MenuAll {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.deletar:
-
-                Toast.makeText(ListaItens.this, "Settings", Toast.LENGTH_SHORT).show();
+                deletar(info.id);
                 break;
             case R.id.editarMenu:
-             //   Toast.makeText(ListaItens.this, "ID: " +info.id+ "Position:" + info.position, Toast.LENGTH_SHORT).show();
                 editar(info.id);
                 break;
             default:

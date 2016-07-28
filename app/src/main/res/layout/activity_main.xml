@@ -8,9 +8,7 @@
         android:id="@+id/PrimeiroLinear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/txtItem"
@@ -23,7 +21,8 @@
             android:id="@+id/etxtItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ItemHint" />
+            android:hint="@string/ItemHint"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     </LinearLayout>
 
@@ -32,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/PrimeiroLinear"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
         >
 
@@ -47,7 +46,8 @@
             android:id="@+id/etxtValor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ValorHint" />
+            android:hint="@string/ValorHint"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     </LinearLayout>
 
