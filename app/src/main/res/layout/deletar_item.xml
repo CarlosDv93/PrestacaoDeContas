@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
-
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.carlosdv93.prestacaodecontas.EditarActivity">
 
     <LinearLayout
-        android:id="@+id/PrimeiroLinearEditar"
+        android:id="@+id/PrimeiroLinearDeletar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtItemEditar"
+            android:id="@+id/txtItemDeletar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Item"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <EditText
-            android:id="@+id/etxtItemEditar"
+        <TextView
+            android:id="@+id/etxtItemDeletar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/ItemHint"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:hint="@string/ItemHint" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/SegundoLinearEditar"
+        android:id="@+id/SegundoLinearDeletar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PrimeiroLinearEditar">
+        android:layout_below="@+id/PrimeiroLinearDeletar">
 
 
         <TextView
-            android:id="@+id/txtValorEditar"
+            android:id="@+id/txtValorDeletar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Valor"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <EditText
-            android:id="@+id/etxtValorEditar"
+        <TextView
+            android:id="@+id/etxtValorDeletar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ValorHint"
-            android:inputType="numberDecimal" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
 
     </LinearLayout>
-
 </RelativeLayout>

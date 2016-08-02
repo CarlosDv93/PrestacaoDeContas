@@ -1,6 +1,3 @@
-
-
-
 <resources>
     <string name="app_name">Prestação de Contas</string>
     <string name="configuracao">Configuração</string>
@@ -18,5 +15,7 @@
     <string name="sobre_descrito">App desolvido para controle de gastos  de maneira simplificada.
         \nInsere os dados e permite editar o valor inserido ou deletar o mesmo.
         \nDesenvolvido por Carlos D. A. Arcos. © 2016 </string>
+    <string name="soma">Soma:</string>
+    <string name="deletar">Deletar</string>
 
 </resources>

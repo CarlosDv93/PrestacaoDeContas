@@ -12,9 +12,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carlosdv93.prestacaodecontas.bancoDeDados.BancoDeDados;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,11 +54,21 @@ public class ListaItens extends MenuAll {
 
         SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.itens_list_view, cursor, nomeCampos, idViews, 0);
         listView.setAdapter(cursorAdapter);
+        float soma = db.somaTotal();
+
+        TextView txtValorSoma = (TextView) findViewById(R.id.txtSomaTotal);
+        txtValorSoma.setText(String.format(Locale.getDefault(), "%.2f", soma));
 
     }
 
     public void editar(long id){
         Intent intent = new Intent(this, EditarActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+    }
+
+    public void deletar(long id){
+        Intent intent = new Intent(this, DeletarActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }
@@ -73,11 +86,9 @@ public class ListaItens extends MenuAll {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.deletar:
-
-                Toast.makeText(ListaItens.this, "Settings", Toast.LENGTH_SHORT).show();
+                deletar(info.id);
                 break;
             case R.id.editarMenu:
-             //   Toast.makeText(ListaItens.this, "ID: " +info.id+ "Position:" + info.position, Toast.LENGTH_SHORT).show();
                 editar(info.id);
                 break;
             default:
